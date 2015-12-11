@@ -15,11 +15,11 @@
 		
 		function initialize() {
 			directionsDisplay = new google.maps.DirectionsRenderer();
-			var melbourne = new google.maps.LatLng(12.828343,77.5858063);
+			var home = new google.maps.LatLng(12.828343,77.5858063);
 			var myOptions = {
 				zoom:12,
 				mapTypeId: google.maps.MapTypeId.ROADMAP,
-				center: melbourne
+				center: home
 			}
 
 			map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
