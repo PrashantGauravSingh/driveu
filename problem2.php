@@ -3,7 +3,6 @@
 require 'vendor/autoload.php';
 $app = new \Slim\Slim();
 
-
 $host = "127.0.0.1";
     $user = "prashantgauravsi";                     //Your Cloud 9 username
     $pass = "";                                 //Remember, there is NO password by default!
@@ -12,10 +11,7 @@ $host = "127.0.0.1";
 
     $connection = mysqli_connect($host, $user, $pass, $db, $port) or die(mysql_error());
 
-
-
 $app->get('/:latitude/:longitude', function ($latitude,$longitude) {
- 
    function isValidLatitude($latitude){
     if (preg_match("/^-?([1-8]?[1-9]|[1-9]0)\.{1}\d{1,6}$/", $latitude)) {
         return true;
@@ -23,7 +19,6 @@ $app->get('/:latitude/:longitude', function ($latitude,$longitude) {
         return false;
      }
   }
-  
   function isValidLongitude($longitude){
     if(preg_match("/^-?([1]?[1-7][1-9]|[1]?[1-8][0]|[1-9]?[0-9])\.{1}\d{1,6}$/",
       $longitude)) {
@@ -32,20 +27,18 @@ $app->get('/:latitude/:longitude', function ($latitude,$longitude) {
        return false;
     }
   }
-
   if (isValidLatitude($latitude) and isValidLongitude($longitude)) 
       { global $connection;
           echo "Valid Coordinates";
       $sql = "INSERT INTO geoip (latitude, longitude)
-VALUES ('$latitude', '$longitude')";
-
-if ($connection->query($sql) === TRUE) {
+              VALUES ('$latitude', '$longitude')";
+if ($connection->query($sql) === TRUE) 
+ {
     echo " New record created successfully";
-} else {
+   } 
+    else {
     echo "Error: " . $sql . "<br>" . $conn->error;
-}
+         }
       }
-    
-  
-});
+ });
 $app->run();
